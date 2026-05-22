@@ -25,6 +25,10 @@ results/*.png
 __pycache__/
 *.pyc
 
+# Claude Code
+.claude/
+CLAUDE.md
+
 # Editor
 .vscode/
 .idea/
