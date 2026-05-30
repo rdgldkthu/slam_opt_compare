@@ -1,6 +1,6 @@
-# slam_opt_compare
+# ceres_vs_g2o
 
-2D Pose Graph Optimisation — Ceres Solver vs g2o, side by side.
+Hands-on comparison of Ceres Solver and g2o for 2D pose graph optimization — the core problem behind graph-based SLAM. Benchmarks convergence, timing, and final cost on the Manhattan3500 dataset.
 
 ## Problem Statement
 
@@ -74,6 +74,22 @@ solveG2O()
 
 Key difference from Ceres: g2o applies the information matrix itself when
 accumulating the system — `computeError()` returns the raw (un-whitened) residual.
+
+## Results
+
+Manhattan3500 dataset — 3 500 nodes, 5 453 edges.
+
+| Metric | Ceres | g2o |
+| --- | --- | --- |
+| Initial cost | 1 283 333.83 | 1 283 333.83 |
+| Final cost | 68.96 | 68.96 |
+| Iterations | 26 | 100 |
+| Time (ms) | 157.4 | 485.5 |
+| Converged | yes | yes |
+
+Both solvers reach the same minimum. Ceres converges ~3× faster with far fewer iterations, thanks to AutoDiff Jacobians feeding a tighter Gauss-Newton step. g2o uses numerical differentiation by default, requiring more iterations to reach the same precision.
+
+![Ceres vs g2o trajectory comparison](results/comparison.png)
 
 ## Quick Start
 
