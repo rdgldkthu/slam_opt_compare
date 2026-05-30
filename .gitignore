@@ -19,7 +19,6 @@ data/*.g2o
 
 # Results
 results/*.txt
-results/*.png
 
 # Python
 __pycache__/
