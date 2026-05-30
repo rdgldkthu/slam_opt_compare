@@ -5,28 +5,28 @@ Hands-on comparison of Ceres Solver and g2o for 2D pose graph optimization — t
 ## Problem Statement
 
 In graph-based SLAM a robot accumulates a set of **poses**
-$\mathbf{x}_i = (x_i,\, y_i,\, \theta_i)^T$ and **relative measurements**
-$\tilde{\mathbf{z}}_{ij}$ between pose pairs (from odometry and loop closures).
-The goal is to find the pose set $\mathcal{X}$ that best explains all constraints:
+$`\mathbf{x}_i = (x_i,\, y_i,\, \theta_i)^T`$ and **relative measurements**
+$`\tilde{\mathbf{z}}_{ij}`$ between pose pairs (from odometry and loop closures).
+The goal is to find the pose set $`\mathcal{X}`$ that best explains all constraints:
 
-$$
+```math
 \mathcal{X}^* = \arg\min_{\mathcal{X}} \sum_{(i,j) \in \mathcal{E}}
     \mathbf{e}_{ij}^T \; \Omega_{ij} \; \mathbf{e}_{ij}
-$$
+```
 
-where $\Omega_{ij}$ is the $3\times3$ information matrix (inverse covariance) and
+where $`\Omega_{ij}`$ is the $`3\times3`$ information matrix (inverse covariance) and
 the residual compares the measured relative pose against the one predicted by the
 current estimates:
 
-$$
+```math
 \mathbf{e}_{ij} = \tilde{\mathbf{z}}_{ij} - \hat{\mathbf{z}}_{ij}, \qquad
 \hat{\mathbf{z}}_{ij} = \begin{pmatrix}
     R_i^T (\mathbf{t}_j - \mathbf{t}_i) \\
     \theta_j - \theta_i
 \end{pmatrix}
-$$
+```
 
-The angle component of $\mathbf{e}_{ij}$ is normalised to $(-\pi, \pi]$.
+The angle component of $`\mathbf{e}_{ij}`$ is normalised to $`(-\pi, \pi]`$.
 Pose 0 is held fixed to remove the gauge freedom.
 
 Dataset: **Manhattan 3500** — 3 500 nodes, 5 598 edges.
