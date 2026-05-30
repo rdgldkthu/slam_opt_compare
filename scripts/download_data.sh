@@ -3,8 +3,10 @@
 # Source: https://lucacarlone.mit.edu/datasets/
 set -euo pipefail
 
-DATA_DIR="$(cd "$(dirname "$0")/../data" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+DATA_DIR="$SCRIPT_DIR/../data"
 mkdir -p "$DATA_DIR"
+DATA_DIR="$(cd "$DATA_DIR" && pwd)"
 
 URL="https://www.dropbox.com/s/gmdzo74b3tzvbrw/input_M3500_g2o.g2o?dl=1"
 OUT="$DATA_DIR/manhattan3500.g2o"
