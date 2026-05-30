@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(slam_opt_compare VERSION 1.0.0 LANGUAGES CXX)
+project(ceres_vs_g2o VERSION 1.0.0 LANGUAGES CXX)
 
 # ============================================================
 # Global settings
@@ -93,15 +93,15 @@ set(SOURCES
 # ============================================================
 # Executable
 # ============================================================
-add_executable(slam_opt_compare ${SOURCES})
+add_executable(ceres_vs_g2o ${SOURCES})
 
-target_include_directories(slam_opt_compare
+target_include_directories(ceres_vs_g2o
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${EIGEN3_INCLUDE_DIRS}
 )
 
-target_link_libraries(slam_opt_compare
+target_link_libraries(ceres_vs_g2o
   PRIVATE
     Ceres::ceres
     ${G2O_LIBS}
@@ -109,7 +109,7 @@ target_link_libraries(slam_opt_compare
 )
 
 # Enable strict warnings in debug builds
-target_compile_options(slam_opt_compare PRIVATE
+target_compile_options(ceres_vs_g2o PRIVATE
   $<$<CONFIG:Debug>:-Wall -Wextra -Wpedantic>
   $<$<CONFIG:Release>:-O3 -DNDEBUG>
 )
@@ -133,7 +133,7 @@ endif()
 # Print summary
 # ============================================================
 message(STATUS "")
-message(STATUS "=== slam-opt-compare build summary ===")
+message(STATUS "=== ceres-vs-g2o build summary ===")
 message(STATUS "  CXX standard  : ${CMAKE_CXX_STANDARD}")
 message(STATUS "  Build type    : ${CMAKE_BUILD_TYPE}")
 message(STATUS "  Ceres version : ${CERES_VERSION}")
